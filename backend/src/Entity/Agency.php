@@ -44,7 +44,7 @@ class Agency implements UserInterface, PasswordAuthenticatedUserInterface
     private string $status = self::STATUS_PENDING;
 
     #[ORM\Column(type: 'decimal', precision: 3, scale: 1, nullable: true)]
-    private ?float $rating = null;
+    private ?string $rating = null;
 
     #[ORM\Column(type: 'json', nullable: true)]
     private ?array $colors = null;
@@ -84,8 +84,8 @@ class Agency implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDescription(?string $v): static { $this->description = $v; return $this; }
     public function getStatus(): string { return $this->status; }
     public function setStatus(string $v): static { $this->status = $v; return $this; }
-    public function getRating(): ?float { return $this->rating; }
-    public function setRating(?float $v): static { $this->rating = $v; return $this; }
+    public function getRating(): ?float { return $this->rating !== null ? (float)$this->rating : null; }
+    public function setRating(float|string|null $v): static { $this->rating = $v !== null ? (string)$v : null; return $this; }
     public function getColors(): ?array { return $this->colors; }
     public function setColors(?array $v): static { $this->colors = $v; return $this; }
     public function getSiret(): ?string { return $this->siret; }

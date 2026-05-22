@@ -33,7 +33,7 @@ class Booking
     private int $extraBags = 0;
 
     #[ORM\Column(type: 'decimal', precision: 8, scale: 2)]
-    private float $totalAmount = 0;
+    private string $totalAmount = '0';
 
     #[ORM\Column(length: 20)]
     private string $status = self::STATUS_CONFIRMED;
@@ -58,7 +58,7 @@ class Booking
     public function getExtraBags(): int { return $this->extraBags; }
     public function setExtraBags(int $v): static { $this->extraBags = $v; return $this; }
     public function getTotalAmount(): float { return (float)$this->totalAmount; }
-    public function setTotalAmount(float $v): static { $this->totalAmount = $v; return $this; }
+    public function setTotalAmount(float|string $v): static { $this->totalAmount = (string)$v; return $this; }
     public function getStatus(): string { return $this->status; }
     public function setStatus(string $v): static { $this->status = $v; return $this; }
     public function getCreatedAt(): \DateTimeImmutable { return $this->createdAt; }

@@ -48,10 +48,10 @@ class Trip
     private string $duration = '';
 
     #[ORM\Column(type: 'decimal', precision: 8, scale: 2)]
-    private float $price = 0;
+    private string $price = '0';
 
     #[ORM\Column(type: 'decimal', precision: 8, scale: 2, nullable: true)]
-    private ?float $vipPrice = null;
+    private ?string $vipPrice = null;
 
     #[ORM\Column(length: 20)]
     private string $type = self::TYPE_STANDARD;
@@ -84,7 +84,7 @@ class Trip
     private int $baggageAllowance = 20;
 
     #[ORM\Column(type: 'decimal', precision: 6, scale: 2)]
-    private float $extraBaggagePrice = 5.0;
+    private string $extraBaggagePrice = '5.00';
 
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
@@ -119,9 +119,9 @@ class Trip
     public function getDuration(): string { return $this->duration; }
     public function setDuration(string $v): static { $this->duration = $v; return $this; }
     public function getPrice(): float { return (float)$this->price; }
-    public function setPrice(float $v): static { $this->price = $v; return $this; }
+    public function setPrice(float|string $v): static { $this->price = (string)$v; return $this; }
     public function getVipPrice(): ?float { return $this->vipPrice !== null ? (float)$this->vipPrice : null; }
-    public function setVipPrice(?float $v): static { $this->vipPrice = $v; return $this; }
+    public function setVipPrice(float|string|null $v): static { $this->vipPrice = $v !== null ? (string)$v : null; return $this; }
     public function getType(): string { return $this->type; }
     public function setType(string $v): static { $this->type = $v; return $this; }
     public function getPlatform(): ?string { return $this->platform; }
@@ -143,7 +143,7 @@ class Trip
     public function getBaggageAllowance(): int { return $this->baggageAllowance; }
     public function setBaggageAllowance(int $v): static { $this->baggageAllowance = $v; return $this; }
     public function getExtraBaggagePrice(): float { return (float)$this->extraBaggagePrice; }
-    public function setExtraBaggagePrice(float $v): static { $this->extraBaggagePrice = $v; return $this; }
+    public function setExtraBaggagePrice(float|string $v): static { $this->extraBaggagePrice = (string)$v; return $this; }
     public function getCreatedAt(): \DateTimeImmutable { return $this->createdAt; }
     public function getUpdatedAt(): ?\DateTimeImmutable { return $this->updatedAt; }
 }
