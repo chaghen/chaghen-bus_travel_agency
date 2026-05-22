@@ -1,0 +1,11 @@
+{
+  "name": "busexpress-ws",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "dev": "node server.js" },
+  "dependencies": {
+    "@socket.io/redis-adapter": "^8.3.0",
+    "redis": "^4.7.0",
+    "socket.io": "^4.7.5"
+  }
+}
